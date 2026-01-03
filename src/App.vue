@@ -34,12 +34,14 @@ import { useSecurityStore } from '@/stores/securityStore';
 import { useGroupStore } from '@/stores/groupStore';
 import { useUiStore } from '@/stores/uiStore';
 import { useTransferStore } from '@/stores/transferStore';
+import { useTaskStore } from '@/stores/taskStore';
 
 const tenantStore = useTenantStore();
 const groupStore = useGroupStore();
 const securityStore = useSecurityStore();
 const uiStore = useUiStore();
 const transferStore = useTransferStore();
+const taskStore = useTaskStore();
 
 const allowedTenantIds = computed(() => {
   const fallback = () => {
@@ -89,9 +91,10 @@ const transferBadge = computed(() => transferStore.badgeCount);
 
 onMounted(async () => {
   await securityStore.ensureServerKey();
-  tenantStore.fetchTenants();
-  groupStore.fetchGroups();
-  transferStore.initialize();
+  await tenantStore.fetchTenants();
+  await groupStore.fetchGroups();
+  await transferStore.initialize();
+  await taskStore.initialize();
 });
 </script>
 

@@ -1449,11 +1449,7 @@ const performLoad = async (target?: string | null) => {
     aggregate
   });
   const currentTicket = ++rootLoadTicket;
-  if (resolvedTenant) {
-    await loadRoot(resolvedTenant);
-  } else {
-    await loadAggregatedView();
-  }
+  await loadRoot(resolvedTenant ?? undefined);
   if (currentTicket !== rootLoadTicket) return;
   logOperation('performLoad', '目录加载完成', {
     resolvedTenant: resolvedTenant || null,

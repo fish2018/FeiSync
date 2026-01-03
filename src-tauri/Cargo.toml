@@ -19,6 +19,11 @@ parking_lot = "0.12"
 base64 = "0.21"
 sha2 = "0.10"
 rfd = "0.14"
+walkdir = "2.5"
+wildmatch = "2.3"
+axum = { version = "0.7", features = ["macros", "json"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors"] }
 
 [target.'cfg(target_os = "macos")'.dependencies]
 dispatch = "0.2"
